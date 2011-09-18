@@ -2,15 +2,15 @@
 # myapps/tlc59108-driver/Makefile
 #
 
-.PHONY: build install clean
+.PHONY: build install install_auto_load clean
 
 TARGET_FILE = tlc59108-i2c
 TEST_SCRIPT = tlc59108_i2c_test.sh
 TARGET_DIR = ${shell pwd}
 #KFLAGS=
-KERNELDIR=/home/training/beagleboard/sdk/psp/linux-2.6.39-r102h-arago1
+#KERNELDIR=$(HOME)/beagleboard/sdk/psp/linux-2.6.39-r102h-arago1
 CCFLAGS=ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-
-FSROOT=/home/training/beagleboard/sdk/targetNFS
+FSROOT=$(HOME)/beagleboard/sdk/targetNFS
 MODULE_DIR=$(FSROOT)/lib/modules/2.6.39/kernel/drivers/i2c
 
 obj-m := $(TARGET_FILE).o
