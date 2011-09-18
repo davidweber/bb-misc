@@ -1,0 +1,55 @@
+This application (Linux Command Interpeter - lci) is a userspace command 
+interpreter that enables manipulation of memory and register contents at 
+their physical addresses.  The application includes the tecla library compiled 
+for ARM (see libtecla-copyright.txt).  The lci keeps a command history, 
+which can be navigated using up and down arrow keys.
+
+The lci application supports scripting, which can be invoked via the "source"
+command (in interactive mode), or via piped input.
+
+Interactive Mode
+
+[root@lci] /home/root # source <input file>
+
+Piped Input Mode
+
+cat <input file> | ./lci
+
+The lci application supports the following commands:
+
+C16     <addr> <data>       - clears specified bits (read-modify-write)
+C32     <addr> <data>       - clears specified bits (read-modify-write)
+C8      <addr> <data>       - clears specified bits (read-modify-write)
+CD      [path]              - changes current directory to [path]
+DEBUG   <debug level>       - sets the debug level 0 = none
+EXIT                        - exits program
+HELP                        - displays this command summary
+MCMP    <dest> <src> <sz>   - compares sz bytes between dest and src memory
+MCPY    <dest> <src> <sz>   - copies sz bytes from src to dest
+MF16    <addr> <n> <seed>   - fills n addresses with incremented seed values
+MF32    <addr> <n> <seed>   - fills n addresses with incremented seed values
+MF8     <addr> <n> <seed>   - fills n addresses with incremented seed values
+MS16    <addr> <n> <data>   - fills n addresses with specified 16-bit data value
+MS32    <addr> <n> <data>   - fills n addresses with specified 32-bit data value
+MS8     <addr> <n> <data>   - fills n addresses with specified 8-bit data value
+QUIT                        - exits program
+PAUSE   <msg>               - displays msg and waits for user to hit enter
+R16     <addr> [n]          - read 16-bit value
+R32     <addr> [n]          - read 32-bit value
+R8      <addr> [n]          - read 8-bit value
+S16     <addr> <data>       - sets specified bits (read-modify-write)
+S32     <addr> <data>       - sets specified bits (read-modify-write)
+S8      <addr> <data>       - sets specified bits (read-modify-write)
+SLEEP   <seconds>           - sleeps for specified seconds
+SOURCE  <filename>          - executes command from specified file
+TS                          - print a timestamp (seconds since epoch)
+VER                         - displays program version
+W16     <addr> <data>       - write 16-bit value
+W32     <addr> <data>       - write 32-bit value
+W8      <addr> <data>       - write 8-bit value
+
+Lines beginning with "#" character are ignored.
+
+The commands are not case-sensitive, and <addr> & <data> parameters are specified in hexidecimal,
+but the 0x prefix is optional.
+

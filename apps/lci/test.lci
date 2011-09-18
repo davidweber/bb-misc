@@ -1,0 +1,13 @@
+ver
+date
+lcd on
+sleep 1
+lcd off
+sleep 1
+lcd on
+sleep 1
+lcd flip
+sleep 1
+lcd flip
+date
+
