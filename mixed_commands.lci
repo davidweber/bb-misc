@@ -1,0 +1,7 @@
+ver
+ps | grep lci
+sleep 1
+lcd off
+sleep 1
+lcd on
+date
