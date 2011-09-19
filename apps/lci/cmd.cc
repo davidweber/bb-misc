@@ -1024,7 +1024,8 @@ status_t cmd::i2c_read(const char* cmd_line, arg_array_t cmd_args, uint32_t num_
       }
 
       // read data from device addr
-      data = ioctl(fileno(fptr), OMAP3_BEAGLE_I2C_IOCQ_RD, addr);
+      //data = ioctl(fileno(fptr), OMAP3_BEAGLE_I2C_IOCQ_RD, addr);
+      data = ioctl(fileno(fptr), OMAP3_BEAGLE_I2C_IOCQ_RD);
       printf("[0x%02X] = 0x%02X\n", addr, data);
 
       // close device file
