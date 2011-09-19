@@ -962,8 +962,6 @@ status_t cmd::lcd(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args)
 {
   status_t status = CI_INVALID_NUMBER_OF_ARGUMENTS;
 
-#if 1
-
   if (num_args == 2)
   {
     status = SUCCESS;
@@ -995,13 +993,9 @@ status_t cmd::lcd(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args)
     {
       status = CI_INVALID_ARG;
     }
-
     // close device file
     fclose(fptr);
   }
-
-#endif
-
   return status;
 }
 
@@ -1013,8 +1007,6 @@ status_t cmd::i2c_read(const char* cmd_line, arg_array_t cmd_args, uint32_t num_
 
   uint8_t addr;
   uint8_t data;
-
-#if 1
 
   if (num_args == 2)
   {
@@ -1041,9 +1033,6 @@ status_t cmd::i2c_read(const char* cmd_line, arg_array_t cmd_args, uint32_t num_
       status = SUCCESS;
     }
   }
-
-#endif
-
   return status;
 }
 
@@ -1052,8 +1041,6 @@ status_t cmd::i2c_read(const char* cmd_line, arg_array_t cmd_args, uint32_t num_
 status_t cmd::i2c_write(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args)
 {
   status_t status = CI_INVALID_NUMBER_OF_ARGUMENTS;
-
-#if 1
 
   uint8_t addr;
   uint8_t data;
@@ -1083,9 +1070,18 @@ status_t cmd::i2c_write(const char* cmd_line, arg_array_t cmd_args, uint32_t num
       status = SUCCESS;
     }
   }
-
-#endif
-
   return status;
 }
 
+//------------------------------------------------------------------------------
+
+#if 0
+
+status_t cmd::hello(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args)
+{
+  status_t status = SUCCESS;
+  printf ("%s\n", "World!");
+  return status;
+}
+
+#endif

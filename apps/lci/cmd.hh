@@ -75,16 +75,12 @@ class cmd
   static status_t pause(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
   static status_t sleep(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
   static status_t cd(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
-#if 1
-  static status_t lcd_on(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
-  static status_t lcd_off(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
-  static status_t lcd_toggle(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
-  static status_t lcd_flip(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
   static status_t lcd(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
   static status_t i2c_read(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
   static status_t i2c_write(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
+#if 0
+  static status_t hello(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args);
 #endif
-  
 };
 
 #endif //__CMD_H__
