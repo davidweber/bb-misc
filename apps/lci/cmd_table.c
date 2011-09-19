@@ -53,10 +53,11 @@ cmd_table_entry_t cmd_table[] =
   { "W16",      cmd::w16,          3, 3, "W16     <addr> <data>       - write 16-bit value" },
   { "W32",      cmd::w32,          3, 3, "W32     <addr> <data>       - write 32-bit value" },
   { "W8",       cmd::w8,           3, 3, "W8      <addr> <data>       - write 8-bit value" },
-#if 1
-  { "LCD"      ,cmd::lcd,          2, 2, "LCD <cmd>                   - do lcd cmd <cmd> = on, off, flip, toggle" },
-  { "I2CRD"    ,cmd::i2c_read,     2, 2, "I2C_RD  <addr>              - read I2C addr" },
-  { "I2CWR"    ,cmd::i2c_write,    3, 3, "I2C_WR  <addr> <data>       - write specifed data to specified I2C addr" },
+  { "LCD"      ,cmd::lcd,          2, 2, "LCD     <cmd>               - do lcd cmd (on, off, flip, toggle)" },
+  { "I2CRD"    ,cmd::i2c_read,     2, 2, "I2CRD   <addr>              - read I2C addr" },
+  { "I2CWR"    ,cmd::i2c_write,    3, 3, "I2CWR   <addr> <data>       - write specifed data to specified I2C addr" },
+#if 0
+  { "HELLO"    ,cmd::hello,        1, 1, "HELLO                       - prints World!" },
 #endif
 };
 
