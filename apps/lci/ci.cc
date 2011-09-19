@@ -22,6 +22,7 @@
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
+#include <sys/poll.h>
 #include "ci.hh" 
 #include "debug.h"
 #include "libtecla.h"
@@ -38,6 +39,11 @@ ci::ci(cmd_table_entry_t* cmd_table, uint32_t num_cmds, const char* prompt_strin
   this->prompt_string = prompt_string;
   this->get_line = new_GetLine(1024, 2048);
   gl_load_history(this->get_line, HISTORY_FILE, "history file");
+
+  struct pollfd fds;
+  fds.fd = 0; /* this is STDIN */
+  fds.events = POLLIN;
+  this->pipe_input = (poll(&fds, 1, 0) == 1);
 }
 
 //------------------------------------------------------------------------------
@@ -151,6 +157,10 @@ status_t ci::receive_cmd(ci_buf_t buf)
     }
     else
     {
+      if (this->pipe_input)
+      {
+        printf("%s", line);
+      }
       strcpy(buf, line);
     }
   }

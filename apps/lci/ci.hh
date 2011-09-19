@@ -37,6 +37,7 @@ class ci
     cmd_table_entry_t* cmd_table;
     uint32_t num_cmds;
     const char* prompt_string;
+    bool pipe_input;
     GetLine* get_line;
 
   protected:
