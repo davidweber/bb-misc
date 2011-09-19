@@ -27,12 +27,12 @@ OBJS = $(SRCS:.c*=.o)
 #PROMPT = [$(APPNAME)] \# 
 PROMPT = $(APPNAME)
 CC = $(CROSS_COMPILE)g++
-CFLAGS = -I. -I./libtecla/arm -L. -L./libtecla/arm -O2 -D VERSION=\""$(VERDATE)"\" \
+CFLAGS = -I. -I./libtecla/arm -L. -L./libtecla/arm -D VERSION=\""$(VERDATE)"\" \
              -D PROMPT=\""$(PROMPT)"\" -D DEBUG_ON
 LDFLAGS = -ltecla 
 
 ifdef DEBUG
-OPT_FLAGS = -g
+OPT_FLAGS = -g -O0
 else
 OPT_FLAGS = -O2
 endif
