@@ -967,7 +967,7 @@ status_t cmd::lcd(const char* cmd_line, arg_array_t cmd_args, uint32_t num_args)
     status = SUCCESS;
 
     // open device file
-    FILE*fptr = fopen("/dev/tlc59108-i2c0", "w");
+    FILE*fptr = fopen("/dev/tlc59108-i2c0", "r");
     if (!fptr)
     {
       return FAILURE;
@@ -1056,7 +1056,7 @@ status_t cmd::i2c_write(const char* cmd_line, arg_array_t cmd_args, uint32_t num
     else
     {
       // open device file
-      FILE*fptr = fopen("/dev/tlc59108-i2c0", "w");
+      FILE*fptr = fopen("/dev/tlc59108-i2c0", "r");
       if (!fptr)
       {
         return FAILURE;
