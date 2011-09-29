@@ -19,4 +19,5 @@ install:
 	cp -f $(TEST_PROGRAM) $(ROOT_INSTALL_DIR)
 
 clean:
-	@rm -f *.ko *.symvers *.order *.o *.mod.* $(TEST_PROGRAM)
+	@rm -f *.ko *.symvers *.order *.o *.mod.* .*.cmd $(TEST_PROGRAM)
+	@rm -rf .tmp*
