@@ -23,17 +23,10 @@ build:
 install: build
 	@echo "Installing the module in $(FSROOT)"
 	install -D -m 644 $(TARGET_DIR)/$(TARGET_FILE).ko $(FSROOT)/home/root/$(TARGET_FILE).ko 
-	install -D -m 755 $(TARGET_DIR)/$(TEST_SCRIPT) $(FSROOT)/home/root/$(TEST_SCRIPT)
-	@touch installed
-
-install_auto_load: build
 	@echo "Installing the module in $(MODULE_DIR)"
 	install -D -m 644 $(TARGET_DIR)/$(TARGET_FILE).ko $(MODULE_DIR)/$(TARGET_FILE).ko
-	@echo
-	@echo "# - login as root on serial console"
-	@echo "# - run \"depmod -a\""
-	@echo "# - reboot target using \"reboot\" command"
-	@echo
+	@echo "Installing $(TEST_SCRIPT)"
+	install -D -m 755 $(TARGET_DIR)/$(TEST_SCRIPT) $(FSROOT)/home/root/$(TEST_SCRIPT)
 	@touch installed
 
 clean: 
