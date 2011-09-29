@@ -24,5 +24,5 @@ group="root"
 /bin/chgrp $group /dev/${device}${minor}                                                             
 /bin/chmod $mode /dev/${device}${minor}                                                              
                                                                                                      
-echo `/bin/ls -l ${module}*` 
+echo `/bin/ls -l /dev/${module}*` 
 
