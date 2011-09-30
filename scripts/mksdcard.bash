@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -x
 
 #
 #  Creates SD Card for booting Linux on Beagleboard.
@@ -44,7 +44,7 @@ fi
 # setup some defaults
 boot_partition_MB=150
 img_dir=${HOME}/beagleboard/sdk/psp/prebuilt-images
-rootfs_tarball=${HOME}/beagleboard/sdk/filesystem/tisdk-rootfs-beagleboard.tar.gz
+rootfs_tarball=${HOME}/beagleboard/sdk/filesystem/base-rootfs-beagleboard.tar.gz
 
 # check for command line arguments to override defaults
 if [ "$#" -gt "1" ]; then
@@ -82,12 +82,15 @@ sync
 ls -al /tmp/sdboot
 sudo umount /tmp/sdboot
 
-#sudo cp ${rootfs_tarball} /tmp/sdrootfs/
+sudo cp ${rootfs_tarball} /tmp/sdrootfs/
 start_dir=`pwd`
 cd /tmp/sdrootfs
 sudo tar -pxzf ${rootfs_tarball}
 sync
 #rm -f ${rootfs_tarball}
+sudo rm -f /tmp/sdrootfs/boot/uImage*
+sync
+sudo cp ${img_dir}/uImage-beagleboard.bin /tmp/sdrootfs/boot/uImage
 sync
 ls -al /tmp/sdrootfs
 cd ${start_dir}
