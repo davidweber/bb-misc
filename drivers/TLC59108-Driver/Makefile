@@ -12,12 +12,18 @@ TARGET_DIR = ${shell pwd}
 CCFLAGS=ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-
 FSROOT=$(HOME)/beagleboard/sdk/targetNFS
 MODULE_DIR=$(FSROOT)/lib/modules/2.6.39/kernel/drivers/i2c
+ROOT_INSTALL_DIR=$(SDKDIR)/targetNFS/home/root
+MKDEV_SCRIPT=$(HOME)/bb-misc/scripts/mkdev.sh
+TEST_PROGRAM=tlc59108_module_test
+CPP=$(TOOLCHAIN)/$(CROSS_COMPILE)g++
+
 
 obj-m := $(TARGET_FILE).o
 
 build:
 	@echo "Building the kernel module"
 	make -C $(KERNELDIR) ${CCFLAGS} M=$(TARGET_DIR) $(KFLAGS) modules
+	$(CPP) $(TEST_PROGRAM).c -o $(TEST_PROGRAM)
 	@touch built
 
 install: build
@@ -27,9 +33,12 @@ install: build
 	install -D -m 644 $(TARGET_DIR)/$(TARGET_FILE).ko $(MODULE_DIR)/$(TARGET_FILE).ko
 	@echo "Installing $(TEST_SCRIPT)"
 	install -D -m 755 $(TARGET_DIR)/$(TEST_SCRIPT) $(FSROOT)/home/root/$(TEST_SCRIPT)
+	cp -f $(MKDEV_SCRIPT) $(ROOT_INSTALL_DIR)
+	cp -f $(TEST_PROGRAM) $(ROOT_INSTALL_DIR)
+
 	@touch installed
 
 clean: 
 	$(V) rm -rf *.symvers *.order *.ko *.debug *.o .*.d *.mod.c \
-	.*.cmd .tmp_versions core *~ installed built $(QOUT)
+	.*.cmd .tmp_versions core *~ installed built $(QOUT) $(TEST_PROGRAM)
 
