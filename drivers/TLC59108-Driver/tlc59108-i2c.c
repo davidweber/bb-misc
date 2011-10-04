@@ -83,7 +83,7 @@
 
 #define AI_MODE				TLC59108_AI_NONE
 
-//#define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 #define DPRINTK(fmt...) printk(fmt)
@@ -135,38 +135,38 @@ static long device_ioctl (file_t *filp, unsigned int arg1, unsigned long arg2)
     switch(arg1)
     {
       case OMAP3_BEAGLE_LCD_IOCT_ON:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_ON", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_ON", arg2);
         tlc59108_i2c_write_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT0, 0x00);
         break;
 
       case OMAP3_BEAGLE_LCD_IOCT_OFF:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_OFF", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_OFF", arg2);
         tlc59108_i2c_write_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT0, 0x10);
         break;
 
       case OMAP3_BEAGLE_LCD_IOCT_TOGGLE:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_TOGGLE", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_TOGGLE", arg2);
         tlc59108_i2c_read_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT0, &data);
         DPRINTK(DRIVER_DESC " data = 0x%02X\n", data);
         tlc59108_i2c_write_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT0, (data ^ 0x10));
         break;
 
       case OMAP3_BEAGLE_LCD_IOCT_FLIP:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_TOGGLE", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_LCD_IOCT_TOGGLE", arg2);
         tlc59108_i2c_read_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT1, &data);
         DPRINTK(DRIVER_DESC " data = 0x%02X\n", data);
         tlc59108_i2c_write_reg(dev_config.tlc59108_i2c_dev, TLC59108_REG_LEDOUT1, (data ^ 0x01));
         break;
 
       case OMAP3_BEAGLE_I2C_IOCQ_RD:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_I2C_IOCQ_RD", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_I2C_IOCQ_RD", arg2);
         addr = arg2;
         tlc59108_i2c_read_reg(dev_config.tlc59108_i2c_dev, addr, &data);
         DPRINTK(DRIVER_DESC " addr = 0x%02X, data = 0x%02X\n", addr, data);
         break;
 
       case OMAP3_BEAGLE_I2C_IOCT_WR:
-        DPRINTK(DRIVER_DESC " %s(%s, 0x%08X)\n", __FUNCTION__, "OMAP_BEAGLE_I2C_IOCT_WR", arg2);
+        DPRINTK(DRIVER_DESC " %s(%s, 0x%08lX)\n", __FUNCTION__, "OMAP_BEAGLE_I2C_IOCT_WR", arg2);
         data = (arg2 >> 8);
         addr = arg2;        
         DPRINTK(DRIVER_DESC " addr = 0x%02X, data = 0x%02X\n", addr, data);
@@ -484,7 +484,8 @@ static int __init tlc59108_i2c_init(void)
 
 static void __exit tlc59108_i2c_exit(void)
 {
-	i2c_del_driver(&tlc59108_i2c_driver);
+  unregister_chrdev_region(dev_config.dev, 1);
+  i2c_del_driver(&tlc59108_i2c_driver);
 }
 
 module_init(tlc59108_i2c_init);
