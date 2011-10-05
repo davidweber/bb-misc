@@ -83,7 +83,7 @@
 
 #define AI_MODE				TLC59108_AI_NONE
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #define DPRINTK(fmt...) printk(fmt)
