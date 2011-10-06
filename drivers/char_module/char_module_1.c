@@ -1,7 +1,7 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 
-#define MODULE_NAME "char_module"
+#define MODULE_NAME "char_module_1"
 
 //-----------------------------------------------------------------------------
 
@@ -23,7 +23,6 @@ void cleanup_module(void)
 }
 
 //-----------------------------------------------------------------------------
-
 
 MODULE_ALIAS("test:"MODULE_NAME);
 MODULE_AUTHOR("Linux Student");
