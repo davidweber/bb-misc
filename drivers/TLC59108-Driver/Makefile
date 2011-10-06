@@ -2,7 +2,7 @@
 # myapps/tlc59108-driver/Makefile
 #
 
-.PHONY: build install install_auto_load clean
+.PHONY: build install clean
 
 TARGET_FILE = tlc59108-i2c
 TEST_SCRIPT = tlc59108_i2c_test.sh
