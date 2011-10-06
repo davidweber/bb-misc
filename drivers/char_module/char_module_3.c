@@ -121,7 +121,6 @@ void cleanup_module(void)
 
 //-----------------------------------------------------------------------------
 
-MODULE_ALIAS("test:"MODULE_NAME);
 MODULE_AUTHOR("Linux Student");
 MODULE_DESCRIPTION("Basic Character Driver Kernel Module");
 MODULE_LICENSE("GPL");
