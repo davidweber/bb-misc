@@ -31,11 +31,11 @@ MY_DIR=$PWD
 
 SDK_DIR_URL=http://software-dl.ti.com/dsps/dsps_public_sw/am_bu/sdk/BeagleBoardSDK/latest/exports
 
-SDK_INSTALLER=ti-sdk-beagleboard-05.02.00.00-Linux-x86-Install
+SDK_INSTALLER=ti-sdk-beagleboard-05.05.00.00-Linux-x86-Install
 
 INSTALL_DIR=${HOME}/beagleboard
 
-SDK_VER=ti-sdk-beagleboard-05.02.00.00
+SDK_VER=ti-sdk-beagleboard-05.05.00.00
 
 SDK_DIR=${INSTALL_DIR}/${SDK_VER}
 
